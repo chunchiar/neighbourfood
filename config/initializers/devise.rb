@@ -6,13 +6,15 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '5fc07c187363d8eda896d334378c9a7608e9f050f3538737ee29a48fe6468de4618dc27b1536f15d6b37cbda784e4a685351a4f1f20bb12dd3768d75076a8c6f'
+
+  # config.secret_key = '884be08526a77bd09b9868a2eba78861a8186f1deefce179265485b3ac3007bd2dae4da79c3b6881e982a2d3edae7d073150141e9b85a986cdef0a3aabec032f'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+
+  config.mailer_sender = 'hello@neighbourfood.asia'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -108,7 +110,8 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '6f941d120be35474e5d6dae1f62870efb935437fe6df9cc2550bd1a5748e1a7fc14927c58814175779a7384fb4a0c0e410365dfa08c4724af6523960295d7cb8'
+
+  # config.pepper = '01f7986b017fa2b9d3492edf7730063e4c5ffb2a9fc9a11e2d414ffdca4dad515ccf772f0f7d5681b9a576d4c0a67c132e9299ac1897d8d797a614b6923594f8'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -248,6 +251,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+  config.omniauth :facebook, '309458092765344', 'b35e71c1c7264be662834eb34c00dc1f', scope: 'email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :chefs
-  resources :chefs, only:[:index]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users
+
+  root to: 'landing#index'
+
+  get "how-it-works", to:"others#how"
+
 end

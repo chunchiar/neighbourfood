@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  start: 2016-09-27 12:22:31
+  end: 2016-09-27 12:22:31
+  pax_total: 1
+  pax_left: 1
+  location: MyString
+  price: 1
+  has_pork: false
+  has_beef: false
+  status: MyString
+
+two:
+  user_id: 1
+  start: 2016-09-27 12:22:31
+  end: 2016-09-27 12:22:31
+  pax_total: 1
+  pax_left: 1
+  location: MyString
+  price: 1
+  has_pork: false
+  has_beef: false
+  status: MyString

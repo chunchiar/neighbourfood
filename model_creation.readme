@@ -1,0 +1,17 @@
+rails g model Product user_id:integer start:datetime end:datetime pax_total:integer pax_left:integer location:string price:integer has_pork:boolean has_beef:boolean status:string
+
+rails g model Image product_id:integer link:string
+
+rails g model Favourite keeper_id:integer fav_id:integer
+
+rails g model Country name:string
+
+rails g model State country_id:integer name:string
+
+rails g model Location name:string
+
+rails g model Rating giver_id:integer receiver_id:integer type:string score:integer
+
+rails g model Review giver_id:integer receiver_id:integer content:text
+
+rails g model Comment product_id:integer user_id:integer content:text
