@@ -42,6 +42,10 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'friendly_id', github: 'norman/friendly_id'
 gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'gmaps4rails'
+gem 'devise'
+gem 'geocoder'
+
 
 group :development, :test do
   gem 'pry'
