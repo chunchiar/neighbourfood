@@ -1,13 +1,13 @@
 class User < ApplicationRecord
   #  has_many :can_name_anything, class_name: "Favourite", foreign_key: "keeper_id", source :favourite
-  has_many :given_fav, class_name: "Favourite", foreign_key: "keeper_id", source :favourite
-  has_many :received_fav, class_name: "Favourite", foreign_key: "fav_id", source :favourite
+  has_many :given_fav, class_name: "Favourite", foreign_key: "keeper_id", source: :favourite
+  has_many :received_fav, class_name: "Favourite", foreign_key: "fav_id", source: :favourite
 
-  has_many :given_rating, class_name: "Rating", foreign_key: "giver_id", source :rating
-  has_many :received_rating, class_name: "Rating", foreign_key: "receiver_id", source :rating
+  has_many :given_rating, class_name: "Rating", foreign_key: "giver_id", source: :rating
+  has_many :received_rating, class_name: "Rating", foreign_key: "receiver_id", source: :rating
 
-  has_many :given_review, class_name: "Review", foreign_key: "giver_id", source :review
-  has_many :received_review, class_name: "Review", foreign_key: "receiver_id", source :review
+  has_many :given_review, class_name: "Review", foreign_key: "giver_id", source: :review
+  has_many :received_review, class_name: "Review", foreign_key: "receiver_id", source: :review
 
   has_many :comments
   has_many :products
