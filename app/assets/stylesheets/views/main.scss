@@ -1,0 +1,136 @@
+$beige:       #fff5d6;
+$maroon:      #8f072d;
+$red:         #ff5c60;
+$yellow:      #f9da79;
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+.container-fluid {
+  margin: 40px 0;
+}
+
+#main-nav{
+  background-color: $beige;
+  border: none;
+  margin: 0;
+  min-height: 80px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $red;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: $maroon;
+}
+
+footer {
+  text-align: center;
+  background-color: $beige;
+  padding: 20px 0;
+  color: $maroon;
+}
+
+@media screen and (max-width: 1199px) {
+
+}
+
+@media screen and (max-width: 991px) {
+
+}
+
+@media screen and (max-width: 991px) and (min-width:768px) {
+  .navbar-nav > li > a {
+    padding: 10px 14px !important;
+  }
+
+  .navbar-brand-centered {
+    width: 230px !important;
+  }
+
+  .navbar > .container .navbar-brand-centered, .navbar > .container-fluid .navbar-brand-centered {
+    margin-left: -115px !important;
+    margin-top: 10px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-brand-centered {
+    width: 250px;
+    padding: 7px 10px;
+  }
+
+  #main-nav {
+    border: none;
+    margin: 0;
+    min-height: 54px;
+  }
+
+  .navbar-nav {
+    margin: 0px -15px;
+  }
+
+  .navbar-default .navbar-toggle {
+    border-color: $red;
+  }
+
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: $red;
+  }
+
+  .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: $beige;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: none;
+    padding: 5px 15px 20px 15px;
+  }
+}
+
+@media screen and (min-width:768px){
+  .navbar-brand-centered {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 340px;
+    text-align: center;
+    padding: 0;
+    padding-top: 10px;
+    height: auto;
+  }
+  .navbar>.container .navbar-brand-centered,
+  .navbar>.container-fluid .navbar-brand-centered {
+      margin-left: -170px;
+  }
+
+  .container > .navbar-header,
+  .container > .navbar-collapse,
+  .container-fluid > .navbar-header,
+  .container-fluid > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .navbar-nav > li > a {
+      padding: 10px 24px;
+  }
+
+  a.btn-chef {
+    border: 1px solid $red;
+    color: $red !important;
+    border-radius: 6px;
+  }
+
+  a.btn-chef:hover {
+    border: 1px solid $beige;
+    color: $beige !important;
+    background-color: $maroon !important;
+  }
+
+  .navbar-nav {
+    margin-top: 18px;
+  }
+}
