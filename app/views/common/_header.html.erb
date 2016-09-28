@@ -14,7 +14,12 @@
     <div class="collapse navbar-collapse" id="navbar-brand-centered">
 
       <ul class="nav navbar-nav">
-        <li><%= link_to "Become a Chef", new_user_registration_path, class: "btn-chef" %></li>
+        <% unless current_user&.chef? %>
+          <li><%= link_to "Become a Chef", users_become_a_chef_path, class: "btn-chef" %></li>
+        <% else %>
+          <li><%= link_to "My Menu", users_chef_path, class: "btn-chef" %></li>
+        <% end %>
+
         <li><%= link_to "How it Works", how_it_works_path %></li>
       </ul>
 

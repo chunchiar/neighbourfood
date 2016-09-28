@@ -6,6 +6,13 @@
     <div class="row">
 
       <div class="col-sm-6">
+
+        <% if current_user&.chef? %>
+          <div class="chef-title">I'm a Chef!</div>
+        <% else %>
+          <div class="user-title">I'm a Food Lover!</div>
+        <% end %>
+
         <div class="signup-bg">
 
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, multipart: true, html: { method: :put }, authenticity_token: true) do |f| %>
@@ -28,6 +35,13 @@
             <%= f.label :name %><br />
             <%= f.text_field :name, autofocus: true %>
           </div>
+
+          <% if current_user&.chef? %>
+          <div class="field">
+            <%= f.label :store_name %><br />
+            <%= f.text_field :store_name, autofocus: true %>
+          </div>
+          <% end %>
 
           <div class="field">
             <%= f.label :email %><br />

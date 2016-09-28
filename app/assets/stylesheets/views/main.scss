@@ -23,7 +23,7 @@ body{
 }
 
 a { color:$red; text-decoration: none;}
-a:hover {color:$maroon; text-decoration: none;}
+a:hover,a:focus {color:$maroon; text-decoration: none;}
 
 .mar0top{margin-top: 0px}
 .mar0bottom{margin-bottom: 0px}
@@ -231,7 +231,17 @@ label {
 	margin-top: 40px;
 }
 
+//update profile
 
+.user-title, .chef-title {
+  background-color: $beige;
+  padding: 20px 0;
+  text-align: center;
+  color: $red;
+  font-size: 40px;
+  font-weight: 700;
+  @extend .baloo;
+}
 
 @media screen and (max-width: 1199px) {
 
