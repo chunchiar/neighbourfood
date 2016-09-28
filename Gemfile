@@ -41,7 +41,7 @@ gem 'kaminari' #this is for pagination
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'friendly_id', github: 'norman/friendly_id'
-gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'remotipart'
 
 group :development, :test do
   gem 'pry'
