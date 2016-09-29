@@ -1,0 +1,99 @@
+<div id="reg-page">
+  <div class="container mar80bottom">
+
+    <h2 class="categoryTitle">Update Profile</h2>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+
+        <% if current_user&.chef? %>
+          <div class="chef-title">I'm a Chef!</div>
+        <% else %>
+          <div class="user-title">I'm a Food Lover!</div>
+        <% end %>
+
+        <div class="signup-bg">
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, multipart: true, html: { method: :put }, authenticity_token: true) do |f| %>
+
+          <div class="field">
+            <div class="form-group">
+                <div id="preview-image">
+                  <% if current_user.profile_image? %>
+                    <%= image_tag current_user.profile_image, class: "profile-img img-responsive" %>
+                  <% end %>
+                </div>
+              </div>
+
+            <div class="form-group">
+              <%= f.file_field :profile_image, id: "post_image_field", class: 'image-uploader'%>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true %>
+          </div>
+
+          <% if current_user&.chef? %>
+          <div class="field">
+            <%= f.label :store_name %><br />
+            <%= f.text_field :store_name, autofocus: true %>
+          </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :phone %><br />
+            <%= f.phone_field :phone, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :address %><br />
+            <%= f.text_field :address, autofocus: true %>
+          </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <% unless current_user.provider == "facebook" %>
+
+            <div class="field">
+              <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %> characters minimum</em>
+              <% end %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :current_password %><br />
+              <%= f.password_field :current_password, autocomplete: "off" %>
+            </div>
+
+            <% end %>
+
+            <div class="actions mar20top">
+              <%= f.submit "Update" , class: "btn btn-embossed btn-beige" %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -28,6 +28,11 @@ class User < ApplicationRecord
     #[address, state, country].compact.join(', ')
   #end
 
+  validates :name, presence: true
+  validates :email, presence: true
+
+  mount_uploader :profile_image, ImageUploader
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

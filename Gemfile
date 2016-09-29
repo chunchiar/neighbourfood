@@ -46,7 +46,6 @@ gem 'gmaps4rails'
 gem 'devise'
 gem 'geocoder'
 
-
 group :development, :test do
   gem 'pry'
 end

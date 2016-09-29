@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20160928020953) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "image"
+    t.string   "profile_image"
     t.string   "phone"
     t.string   "name"
     t.string   "country"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20160928020953) do
     t.string   "location"
     t.text     "address"
     t.text     "about"
-    t.integer  "role"
+    t.integer  "role",                   default: 0
     t.string   "store_name"
     t.float    "longitude"
     t.float    "latitude"

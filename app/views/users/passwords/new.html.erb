@@ -1,0 +1,70 @@
+<div id="forget-page">
+  <div class="container mar80bottom">
+
+    <h2 class="categoryTitle">Forgot your password?</h2>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="signup-bg">
+
+          <h3>Password Reset</h3>
+            I can't remember my password<br /><br />
+
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Send me reset password instructions", class: "btn btn-embossed btn-beige"%>
+            </div>
+          <% end %>
+
+          <%= render "users/shared/links" %>
+
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+
+        <div class="signup-bg">
+          <h3>Returning User</h3>
+            I am a returning user<br /><br />
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
+
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end -%>
+
+            <div class="actions mar20top">
+              <%= f.submit "Sign In", class: "btn btn-embossed btn-beige" %>
+            </div>
+          <% end %>
+
+
+          <%= render "users/shared/links" %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
