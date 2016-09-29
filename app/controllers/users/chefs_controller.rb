@@ -4,7 +4,7 @@ class Users::ChefsController < ApplicationController
   before_action :checkifchef
 
   def index
-
+    @user = current_user
   end
 
   private

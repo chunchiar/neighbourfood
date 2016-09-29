@@ -50,7 +50,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
       bypass_sign_in resource, scope: resource_name
       # respond_with resource, location: after_update_path_for(resource)
-      redirect_to root_path
+
+      unless current_user&.chef?
+        redirect_to root_path
+      else
+        redirect_to users_chef_path
+      end
+
     else
       clean_up_passwords resource
       # respond_with resource
@@ -81,7 +87,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user = current_user
       @user.update(role: 1)
 
-      redirect_to root_path
+      unless current_user&.chef?
+        redirect_to root_path
+      else
+        redirect_to users_chef_path
+      end
+
     else
       clean_up_passwords resource
       # respond_with resource
@@ -96,7 +107,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :address, :store_name, :profile_image, :password])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :address, :store_name, :profile_image, :password, :about])
   end
 
   def configure_chef_account_update_params

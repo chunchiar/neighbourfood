@@ -216,7 +216,7 @@ label {
   margin-bottom: 20px;
 }
 
-.field input {
+.field input,.field textarea  {
   background-color: #FFF !important;
   width: 100%;
   border: 0;
@@ -242,6 +242,76 @@ label {
   font-weight: 700;
   @extend .baloo;
 }
+
+// chef profile profile page
+#profile-left{
+  min-height: 300px;
+}
+
+#profile-right{
+  min-height: 300px;
+}
+
+#info-con{
+  background-color: $light-grey;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+#profile-page{
+
+  .username{
+    text-align: center;
+    @extend .baloo;
+    font-size: 40px;
+    color: $red;
+  }
+
+  .info-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: $red;
+  }
+
+  .info-desc {
+    margin-bottom: 10px;
+  }
+
+  .profile-row{
+    margin-bottom: 10px;
+    overflow: auto;
+  }
+
+  .profile-title{
+    @extend .baloo;
+    color: $red;
+  }
+
+  .profile-btn{
+    margin-bottom: 20px;
+  }
+}
+
+.menu-item{
+  min-height: 200px;
+  background-color: $light-grey;
+}
+
+#menu{
+
+}
+
+.menu-bg{
+  background-color: $light-grey;
+  padding: 10px 10px 30px 10px;
+}
+
+.input-group-addon {
+  border: none;
+  background-color: #fff;
+  border-radius: 0;
+}
+
 
 @media screen and (max-width: 1199px) {
 

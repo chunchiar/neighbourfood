@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928040548) do
+ActiveRecord::Schema.define(version: 20160929081510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,17 +52,20 @@ ActiveRecord::Schema.define(version: 20160928040548) do
 
   create_table "products", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "start"
+    t.datetime "collect"
     t.datetime "end"
     t.integer  "pax_total"
     t.integer  "pax_left"
     t.string   "location"
-    t.integer  "price"
+    t.float    "price"
     t.boolean  "has_pork"
     t.boolean  "has_beef"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status",      default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "name"
+    t.text     "description"
+    t.string   "image1"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -107,15 +110,15 @@ ActiveRecord::Schema.define(version: 20160928040548) do
     t.string   "profile_image"
     t.string   "phone"
     t.string   "name"
-    t.string   "country"
+    t.integer  "country_id"
     t.string   "state"
     t.string   "location"
-    t.text     "address"
+    t.string   "address"
     t.text     "about"
     t.integer  "role",                   default: 0
     t.string   "store_name"
-    t.string   "latitude"
-    t.string   "longitude"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

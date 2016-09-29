@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   root to: 'landing#index'
 
   get "how-it-works", to:"others#how"
+
+  resources :menu
 end

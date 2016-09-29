@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :comments
   has_many :products
+  belongs_to :country
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
@@ -28,9 +29,9 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name   # assuming the user model has a name
-
-      user.address = "This is required"
-      user.phone = "This is required"
+      # 
+      # user.address = "This is required"
+      # user.phone = "This is required"
     end
   end
 end
