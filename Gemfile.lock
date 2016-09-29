@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/mshibuya/remotipart.git
+  revision: 7e244e78e148430b7720e6cf8f86263d6a1dfddf
+  specs:
+    remotipart (1.3.0)
+
+GIT
   remote: git://github.com/norman/friendly_id.git
   revision: aff0564584e84ffa505e6e278b65ca3c4ee5d698
   specs:
@@ -348,7 +354,6 @@ GEM
       builder
       nokogiri (>= 1.4.1)
       trollop
-    remotipart (1.3.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rubyzip (1.2.0)
@@ -431,7 +436,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing
   rails_admin (>= 1.0.0.rc)
-  remotipart
+  remotipart!
   sass-rails (~> 5.0)
   selenium-webdriver
   shoulda-matchers
