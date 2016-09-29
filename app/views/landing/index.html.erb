@@ -1,7 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      landing page
-    </div>
-  </div>
+<div class="search text-center">
+    <%= form_tag location_path, :method => :get do %>
+      <%= text_field_tag :search, params[:search], :placeholder => "Where ?", class: "form-control" %>
+      <%= submit_tag "What's Cooking!", :class => "btn btn-danger" %>
+    <% end %>
 </div>
+
+<!-- <div class="search">
+  <form role="form", class="box-center">
+    <div class="col-md-9">
+      <div class="form-group centerOn">
+        <label class="sr-only" for="location">Location</label>
+        <input type="email" class="form-control" id="location" placeholder="Where ?">
+      </div>
+
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-default btn-danger">What's Cooking!</button>
+    </div>
+  </form>
+</div> -->

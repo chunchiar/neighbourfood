@@ -1,0 +1,38 @@
+<div style='width: 1250px;'>
+  <div id="geolocation" style='width: 1250px; height: 500px;'></div>
+</div>
+
+<script>
+
+var mapCenter = {"coords": <%=raw @mapCenter.to_json %> };
+
+var handler = Gmaps.build('Google');
+handler.buildMap({ internal: {id: 'geolocation'} }, function(){
+if(mapCenter.coords===null){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(displayOnMap);
+  }
+}else{
+  displayOnMap(mapCenter);
+}
+});
+
+function displayOnMap(coordinates){
+var position = {
+  lat: coordinates.coords.latitude,
+  lng: coordinates.coords.longitude
+}
+var marker = handler.addMarker(position);
+//convert to json and display the chef's address on the map
+markers = handler.addMarkers(<%=raw @hash.to_json %>);
+handler.map.centerOn(marker);
+handler.getMap().setZoom(15);
+
+//infoWindow.setContent('<img src="/common/logo.png" >');
+//infoWindow.open(map, marker);
+};
+
+///project geocoding api key= AIzaSyBtM5dq-gJcORAiWB4LXob7rYXL1B06yrk
+///project api key= AIzaSyDjoC5B_BeZt3Vr_FE-lomEzZKtU7AQ0Ic
+
+</script>

@@ -134,3 +134,26 @@ footer {
     margin-top: 18px;
   }
 }
+
+.search {
+  background-image: asset-url("common/dah_makan.jpg");
+  height: calc(100vh - 52px);
+  width: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+	padding-top: 20%;
+  padding-bottom: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.btn-danger {
+  width: 200px;
+}
+
+.info-image {
+  width: 75px;
+  height: 120px;
+}

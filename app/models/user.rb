@@ -18,6 +18,16 @@ class User < ApplicationRecord
 
   enum role: [:customer, :chef, :admin]
 
+  scope :cooks, -> { where(role: 1) }
+  #field :coordinates, :type => Array
+  #attr_accessible :address, :latitude, :longitude
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode, :if => :address_changed?          # auto-fetch coordinates
+
+  #def address
+    #[address, state, country].compact.join(', ')
+  #end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
