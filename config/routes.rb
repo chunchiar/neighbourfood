@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :products
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_scope :user do
@@ -15,9 +16,13 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  resources :users, only: [:show]
+
   root to: 'landing#index'
 
   get "how-it-works", to:"others#how"
 
-  resources :menu
+  resources :menu do
+    get "relist", to:"menu#relist"
+  end
 end

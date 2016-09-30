@@ -1,7 +1,7 @@
 <div id="menu">
   <div class="container mar80bottom">
 
-    <h2 class="categoryTitle">Menu</h2>
+    <h2 class="categoryTitle">Relist Menu</h2>
 
     <div class="row menu-bg">
 
@@ -12,22 +12,22 @@
 
       <div class="col-sm-6">
 
-        <h3>Add a New Menu</h3>
-        What do you want to cook today?<br /><br />
+        <h3>Relist a New Menu</h3>
+        What do you want to modify?<br /><br />
 
         <div class="field">
           <%= f.label :name %><br />
-          <%= f.text_field :name, autofocus: true %>
+          <%= f.text_field :name, autofocus: true, value: @product_old.name  %>
         </div>
 
         <div class="field">
           <%= f.label :description %><br />
-          <%= f.text_area :description, autofocus: true, rows: "4" %>
+          <%= f.text_area :description, autofocus: true, rows: "4", value: @product_old.description %>
         </div>
 
         <div class="field">
           <%= f.label :address %><br />
-          <%= f.text_area :location, autofocus: true, rows: "4" %>
+          <%= f.text_area :location, autofocus: true, rows: "4", value: @product_old.location %>
         </div>
 
         <div class="field">
@@ -58,12 +58,12 @@
 
         <div class="field">
           <%= f.label :total_quantity %><br />
-          <%= f.number_field :pax_total, autofocus: true %>
+          <%= f.number_field :pax_total, autofocus: true, value: @product_old.pax_total %>
         </div>
 
         <div class="field">
           <%= f.label :price %><br />
-          <%= f.number_field :price, autofocus: true %>
+          <%= f.number_field :price, autofocus: true, value: @product_old.price %>
         </div>
 
         <div class="field">
@@ -75,7 +75,7 @@
         </div>
 
         <div class="">
-          <%= f.submit "Create Menu", class: "btn btn-embossed btn-beige btn-block" %>
+          <%= f.submit "Relist Menu", class: "btn btn-embossed btn-beige btn-block" %>
         </div>
 
       </div>
@@ -89,7 +89,11 @@
 
         <div class="field">
           <div class="form-group">
-              <div id="preview-menu-image"></div>
+              <div id="preview-menu-image">
+                <% if @product.image1 %>
+                  <%= image_tag @product.image1, class: "menu-img img-responsive" %>
+                <% end %>
+              </div>
             </div>
 
           <div class="form-group">

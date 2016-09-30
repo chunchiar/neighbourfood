@@ -1,0 +1,23 @@
+<div class="col-md-4 menu-item" id="item-<%= item.id %>">
+  <div class="inner">
+    <div class="menu-img">
+      <%= image_tag item.image1.optimised , class: "img-responsive"%>
+      <div class="menu-price">RM <%= item.price %></div>
+    </div>
+    <div class="info-holder">
+      <div class="name-holder">
+        <h4><%= item.user.store_name %></h4>
+        <h5><%= item.user.name %></h5>
+      </div>
+      <div class="profile-img-holder">
+        <%= image_tag item.user.profile_image.thumb , class: "img-responsive"%>
+      </div>
+      <div class="title-holder">
+        <%= link_to item.name.truncate(20, omission: '...'), menu_path(item) %>
+      </div>
+      <div class="desc-holder">
+        <%= item.description.truncate(50, omission: '...') %>
+      </div>
+    </div>
+  </div>
+</div>

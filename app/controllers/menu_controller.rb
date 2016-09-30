@@ -1,38 +1,63 @@
 class MenuController < ApplicationController
-
+  respond_to :js
   before_action :authenticate_user!
   before_action :checkifchef
+  before_action :checkifchefownpost, only: [:edit, :relist]
 
   def index
+    @product = Product.friendly.find(params[:id])
+  end
 
+  def show
+    # @product = Product.find_by(id: params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   def new
-    @menu = Product.new
+    @product = Product.new
+  end
+
+  def relist
+    @product = Product.new
+    # @product_old = Product.find_by(id: params[:menu_id])
+    @product_old = Product.friendly.find(params[:menu_id])
+    # @product = RelistMenuForm.new(menu)
   end
 
   def create
-    @menu = current_user.products.build(menu_params)
+    @product = current_user.products.build(menu_params)
 
-      if @menu.save
-        # flash[:success] = "You've created a new topic."
+      if @product.save
+        # flash[:success] = "You've created a new menu."
+        # in future redirects to the product page
         redirect_to users_chef_path
       else
-        # flash[:danger] = @topic.errors.full_messages
+        # flash[:danger] = @product.errors.full_messages
         render new_menu_path
       end
+
   end
 
   def edit
-
+    @product = Product.friendly.find(params[:id])
   end
 
   def update
+    @product = Product.friendly.find(params[:id])
 
+    if @product.update(menu_params)
+      redirect_to users_chef_path
+    else
+      flash.now[:danger] = @product.errors.full_messages
+      # redirect_to edit_menu_path(@product)
+    end
   end
 
   def destroy
-
+    @product = Product.friendly.find(params[:id])
+    if @product.destroy
+      flash.now[:success] = "#{@product.name} was deleted."
+    end
   end
 
   private
@@ -43,10 +68,20 @@ class MenuController < ApplicationController
     end
   end
 
-  private
+  def checkifchefownpost
+    if params[:id]
+      @product = Product.friendly.find(params[:id])
+    elsif params[:menu_id]
+      @product = Product.friendly.find(params[:menu_id])
+    end
+
+    unless @product.user == current_user
+      redirect_to users_chef_path
+    end
+  end
 
   def menu_params
-    params.require(:product).permit(:name, :description, :location, :end, :collect, :pax_total, :price, :has_pork, :has_beef, :image1)
+    params.require(:product).permit(:name, :description, :location, :expire, :collect, :pax_total, :price, :has_pork, :has_beef, :image1)
   end
 
 end

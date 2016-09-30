@@ -1,19 +1,17 @@
 <div id="menu">
   <div class="container mar80bottom">
 
-    <h2 class="categoryTitle">Menu</h2>
+    <h2 class="categoryTitle">Edit Menu</h2>
 
     <div class="row menu-bg">
 
-
-
       <!-- form start -->
-      <%= form_for(@product, url: menu_index_path, html: { id: "menu-create-form" }) do |f| %>
+      <%= form_for(@product, url: menu_path(@product), remote: true, html: { id: "menu-create-form" }) do |f| %>
 
       <div class="col-sm-6">
 
-        <h3>Add a New Menu</h3>
-        What do you want to cook today?<br /><br />
+        <h3>Edit Your Menu</h3>
+        Edit what you want and click save once you're done.<br /><br />
 
         <div class="field">
           <%= f.label :name %><br />
@@ -75,7 +73,11 @@
         </div>
 
         <div class="">
-          <%= f.submit "Create Menu", class: "btn btn-embossed btn-beige btn-block" %>
+          <%= f.submit "Update Menu", class: "btn btn-embossed btn-beige btn-block" %>
+        </div>
+
+        <div class="">
+          <%= link_to "Back", users_chef_path, class: "btn btn-embossed btn-beige btn-block mar20top" %>
         </div>
 
       </div>
@@ -89,7 +91,11 @@
 
         <div class="field">
           <div class="form-group">
-              <div id="preview-menu-image"></div>
+              <div id="preview-menu-image">
+                <% if @product.image1? %>
+                  <%= image_tag @product.image1, class: "menu-img img-responsive" %>
+                <% end %>
+              </div>
             </div>
 
           <div class="form-group">

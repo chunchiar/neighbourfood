@@ -258,6 +258,10 @@ label {
   margin-top: 20px;
 }
 
+#info-con.nomar{
+  margin-top: 0;
+}
+
 #profile-page{
 
   .username{
@@ -279,7 +283,7 @@ label {
 
   .profile-row{
     margin-bottom: 10px;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .profile-title{
@@ -290,11 +294,90 @@ label {
   .profile-btn{
     margin-bottom: 20px;
   }
+
+  .user-title, .chef-title{
+    font-size: 30px;
+  }
+}
+
+.menu-con {
+    margin: 0 -15px;
 }
 
 .menu-item{
-  min-height: 200px;
-  background-color: $light-grey;
+  margin-bottom: 30px;
+
+  .inner{
+    background-color: $light-grey;
+    padding: 10px;
+  }
+
+  .menu-img {
+    position: relative;
+  }
+
+  .menu-price {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $yellow;
+    padding: 4px;
+    font-weight: bold;
+    color: $red;
+  }
+
+  .name-holder h4 {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .name-holder h5 {
+    margin-top: 5px;
+  }
+
+  .profile-img-holder img {
+    border-radius: 50%;
+  }
+
+  .profile-img-holder {
+    width: 60px;
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    border: 3px solid #c5c5c3;
+    border-radius: 50%;
+  }
+
+  .info-holder {
+    position: relative;
+  }
+
+  .desc-holder{
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .button-holder {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .btn-center{
+    margin:0 auto;
+  }
+
+  .btn-center .btn {
+    margin: 0 4px;
+  }
+
+  .title-holder {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 25px;
+    line-height: 27px;
+    color: $red;
+  }
 }
 
 #menu{
@@ -310,6 +393,73 @@ label {
   border: none;
   background-color: #fff;
   border-radius: 0;
+}
+
+#product-page{
+
+  .prod-title{
+    @extend .baloo;
+    color: $red;
+    font-size: 60px;
+    margin-top: 0;
+  }
+
+  .prod-desc {
+    margin-top: 20px;
+    line-height: initial;
+    text-align: justify;
+  }
+
+  .prod-price {
+    font-size: 50px;
+    font-weight: bold;
+    color: $maroon;
+  }
+
+  .prod-time-left,.prod-product-left {
+    border: 1px solid $red;
+    color: $red;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+  }
+
+  .prod-map {
+    min-height: 240px;
+    background-color: #ececec;
+    margin-bottom: 20px;
+  }
+
+  .prod-collect {
+    font-size: 19px;
+    margin-bottom: 10px;
+
+    span{
+      font-weight: bold;
+      color:$red
+    }
+  }
+
+  .prod-order-btn {
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    margin-top: 30px;
+  }
+
+  .prod-pork-beef {
+    margin: 20px 0;
+  }
+
+  .contains {
+    border: 1px solid $yellow;
+    color: $yellow;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 6px;
+  }
+
 }
 
 

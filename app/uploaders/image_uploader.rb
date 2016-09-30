@@ -15,9 +15,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def store_dir
     if Rails.env.test?
-      "uploads/test/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "uploads/test/#{model.class.to_s.underscore}/#{mounted_as}"
     else
-      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
     end
   end
 
@@ -46,7 +46,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill: [200, 200]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
