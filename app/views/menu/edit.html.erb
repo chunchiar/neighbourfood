@@ -1,0 +1,116 @@
+<div id="menu">
+  <div class="container mar80bottom">
+
+    <h2 class="categoryTitle">Edit Menu</h2>
+
+    <div class="row menu-bg">
+
+      <!-- form start -->
+      <%= form_for(@product, url: menu_path(@product), remote: true, html: { id: "menu-create-form" }) do |f| %>
+
+      <div class="col-sm-6">
+
+        <h3>Edit Your Menu</h3>
+        Edit what you want and click save once you're done.<br /><br />
+
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description %><br />
+          <%= f.text_area :description, autofocus: true, rows: "4" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :address %><br />
+          <%= f.text_area :location, autofocus: true, rows: "4" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :cut_off_date_and_time %><br />
+          <div class='input-group date' id='cutoff'>
+            <%= f.text_field :expire, autofocus: true %>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+          </div>
+          <script type="text/javascript">
+            $(function () {
+                $('#cutoff').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});
+            });
+            </script>
+        </div>
+
+        <div class="field">
+          <%= f.label :collection_date_and_time %><br />
+          <div class='input-group date' id='collect'>
+            <%= f.text_field :collect, autofocus: true %>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+          </div>
+          <script type="text/javascript">
+            $(function () {
+                $('#collect').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});
+            });
+            </script>
+        </div>
+
+        <div class="field">
+          <%= f.label :total_quantity %><br />
+          <%= f.number_field :pax_total, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :price %><br />
+          <%= f.number_field :price, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.check_box :has_pork, {}, "true", "false" %> <%= f.label :contains_pork %>
+        </div>
+
+        <div class="field">
+          <%= f.check_box :has_beef, {}, "true", "false" %> <%= f.label :contains_beef %>
+        </div>
+
+        <div class="">
+          <%= f.submit "Update Menu", class: "btn btn-embossed btn-beige btn-block" %>
+        </div>
+
+        <div class="">
+          <%= link_to "Back", users_chef_path, class: "btn btn-embossed btn-beige btn-block mar20top" %>
+        </div>
+
+      </div>
+
+
+      <!-- right side -->
+      <div class="col-sm-6">
+
+        <h3>Add images to your menu</h3>
+        Images create appetite for your customers?<br /><br />
+
+        <div class="field">
+          <div class="form-group">
+              <div id="preview-menu-image">
+                <% if @product.image1? %>
+                  <%= image_tag @product.image1, class: "menu-img img-responsive" %>
+                <% end %>
+              </div>
+            </div>
+
+          <div class="form-group">
+            <%= f.file_field :image1, id: "mwnu_image_field", class: 'menu-image-uploader'%>
+          </div>
+        </div>
+
+      </div>
+
+      <% end %>
+      <!-- form end -->
+
+
+
+    </div>
+
+  </div>
+</div>

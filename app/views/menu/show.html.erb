@@ -1,0 +1,65 @@
+<div class="container" id="product-page">
+  <div class="row">
+    <!-- left side -->
+    <div class="col-md-6" id="product-left">
+
+      <h1 class="prod-title"><%= @product.name %></h1>
+      <div class="prod-image">
+        <%= image_tag @product.image1, class: "img-responsive" %>
+      </div>
+
+      <div class="prod-desc">
+        <%= @product.description %>
+      </div>
+
+      <div class="prod-pork-beef">
+
+        <% if @product.has_pork %>
+          <div class="contains">Contains Pork</div>
+        <% end %>
+
+        <% if @product.has_beef %>
+          <div class="contains">Contains Beef</div>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <!-- right side -->
+    <div class="col-md-6" id="product-right">
+
+      <div class="prod-price">RM<%= @product.price %></div>
+      <div class="prod-time-left"><% if @product.expire < DateTime.now %> EXPIRED <% end %></div>
+
+      <% if @product.expire > DateTime.now %>
+      <script type="text/javascript">
+        $(".prod-time-left")
+        .countdown("<%= @product.expire.strftime("%Y/%m/%d %H:%M:%S") %>", function(event) {
+          $(this).text(
+            event.strftime('%D days %H:%M:%S')
+          );
+        });
+      </script>
+      <% end %>
+
+      <div class="prod-product-left">
+        <% if @product.expire < DateTime.now %>
+          SOLD OUT
+        <% else %>
+          11 left out of 30 meals
+        <% end %>
+      </div>
+      <div class="prod-location">
+        <div class="prod-map">
+        </div>
+      </div>
+      <div class="prod-collect"><span>Collection Date:</span> <%= @product.collect.strftime("%d/%m/%Y") %></div>
+      <div class="prod-collect"><span>Collection Time:</span> <%= @product.collect.strftime("%l:%M%p") %></div>
+      <% if @product.expire > DateTime.now %>
+        <a href="#" class="btn btn-embossed btn-beige prod-order-btn">Order Now</a>
+      <% end %>
+    </div>
+
+  </div>
+</div>
