@@ -112,15 +112,15 @@ ActiveRecord::Schema.define(version: 20160930125625) do
     t.string   "profile_image"
     t.string   "phone"
     t.string   "name"
-    t.integer  "country_id"
+    t.string   "country_id"
     t.string   "state"
     t.string   "location"
     t.string   "address"
     t.text     "about"
     t.integer  "role",                   default: 0
     t.string   "store_name"
-    t.float    "latitude"
     t.float    "longitude"
+    t.float    "latitude"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
