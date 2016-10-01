@@ -5,7 +5,26 @@
 <script>
 
 var mapCenter = {"coords": <%=raw @mapCenter.to_json %> };
-
+var myStyle = [
+  {
+    "featureType": "all",
+    "stylers": [
+      { "color": "#C0C0C0" }
+    ]
+  },{
+    "featureType": "road.arterial",
+    "elementType": "geometry",
+    "stylers": [
+      { "color": "#CCFFFF" }
+    ]
+  },{
+    "featureType": "landscape",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  }
+];
 var handler = Gmaps.build('Google');
 handler.buildMap({ internal: {id: 'geolocation'} }, function(){
 if(mapCenter.coords===null){
