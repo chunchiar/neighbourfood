@@ -1,7 +1,5 @@
-
-<h5><b><%= chefs.name %></b></h5>
-  <%= image_tag("pikachu.png", class: "info-image") %>
-
-<div class="modal-footer">
-  <h5><%=link_to "View Full Details" %></h5>
+<div class="details text-center">
+  <h5><b><%= chefs.name %></b></h5>
+  <%= image_tag chefs.profile_image.thumb %>
+  <h5><%=link_to "View Full Details", users_chef_path %></h5>
 </div>

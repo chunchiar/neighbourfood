@@ -128,15 +128,12 @@
               </div>
             </div>
 
-
           <% end %>
 
 
         </div>
       </div>
-
-
     </div>
-
+    <%= image_tag src= "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@user.latitude}%2C#{@user.longitude}" %>
   </div>
 </div>

@@ -48,7 +48,6 @@ gem 'geocoder'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
 
-
 group :development, :test do
   gem 'pry'
 end
