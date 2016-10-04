@@ -107,11 +107,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :address, :store_name, :profile_image, :password, :about])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :address, :store_name, :profile_image, :password, :about, :bank, :acc_no, :acc_name])
   end
 
   def configure_chef_account_update_params
-    devise_parameter_sanitizer.permit(:chef_account_update, keys: [:store_name, :address, :current_password])
+    devise_parameter_sanitizer.permit(:chef_account_update, keys: [:store_name, :address, :current_password, :bank, :acc_no, :acc_name])
   end
 
   def chef_account_update_params

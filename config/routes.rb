@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show]
+  resources :orders, only: [:create, :show]
 
   root to: 'landing#index'
 
@@ -25,4 +26,6 @@ Rails.application.routes.draw do
   resources :menu do
     get "relist", to:"menu#relist"
   end
+
+  post :follow, to: 'favourite#follow'
 end

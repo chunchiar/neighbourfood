@@ -18,7 +18,7 @@
         <div class="info-title">Member Since</div>
         <div class="info-desc"><%= @user.created_at.strftime('%b %d, %Y') %></div>
 
-        <div class="info-title">Your Rating</div>
+        <div class="info-title">Rating</div>
         <div class="info-desc">@@@@@</div>
       </div>
 
@@ -47,7 +47,7 @@
               <div class="inner">
                 <div class="menu-img">
                   <%= image_tag item.image1.optimised , class: "img-responsive"%>
-                  <div class="menu-price">RM <%= item.price %></div>
+                  <div class="menu-price"><%=number_to_currency(item.price, unit: "RM")%></div>
                 </div>
                 <div class="info-holder">
                   <div class="name-holder">
@@ -85,56 +85,57 @@
         </div>
       </div>
 
-      <div class="profile-row">
-        <h2 class="profile-title">Past Menu</h2>
-        <div class="menu-con">
+      <% if @past_menus.length > 0 %>
+        <div class="profile-row">
+          <h2 class="profile-title">Past Menu</h2>
+          <div class="menu-con">
 
-          <% @past_menus.each do |item| %>
+            <% @past_menus.each do |item| %>
 
-            <div class="col-md-4 menu-item" id="item-<%= item.id %>">
-              <div class="inner">
-                <div class="menu-img">
-                  <%= image_tag item.image1.optimised , class: "img-responsive"%>
-                  <div class="menu-price">RM <%= item.price %></div>
-                </div>
-                <div class="info-holder">
-                  <div class="name-holder">
-                    <h4><%= item.user.store_name %></h4>
-                    <h5><%= item.user.name %></h5>
+              <div class="col-md-4 menu-item" id="item-<%= item.id %>">
+                <div class="inner">
+                  <div class="menu-img">
+                    <%= image_tag item.image1.optimised , class: "img-responsive"%>
+                    <div class="menu-price"><%=number_to_currency(item.price, unit: "RM")%></div>
                   </div>
-                  <div class="profile-img-holder">
-                    <%= image_tag item.user.profile_image.thumb , class: "img-responsive"%>
+                  <div class="info-holder">
+                    <div class="name-holder">
+                      <h4><%= item.user.store_name %></h4>
+                      <h5><%= item.user.name %></h5>
+                    </div>
+                    <div class="profile-img-holder">
+                      <%= image_tag item.user.profile_image.thumb , class: "img-responsive"%>
+                    </div>
+                    <div class="title-holder">
+                      <%= link_to item.name.truncate(20, omission: '...'), menu_path(item) %>
+                    </div>
+                    <div class="desc-holder">
+                      <%= item.description.truncate(50, omission: '...') %>
+                    </div>
                   </div>
-                  <div class="title-holder">
-                    <%= link_to item.name.truncate(20, omission: '...'), menu_path(item) %>
-                  </div>
-                  <div class="desc-holder">
-                    <%= item.description.truncate(50, omission: '...') %>
-                  </div>
-                </div>
-                <div class="button-holder">
-                  <div class="btn-center">
+                  <div class="button-holder">
+                    <div class="btn-center">
 
-                    <%= link_to menu_relist_path(item), class: "btn btn-success" do %>
-                      <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-                    <% end %>
+                      <%= link_to menu_relist_path(item), class: "btn btn-success" do %>
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                      <% end %>
 
-                    <%= link_to menu_path(item), class: "btn btn-danger", method: :delete, remote: true, data: { confirm: "Delete '#{item.name}'?" } do %>
-                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    <% end %>
+                      <%= link_to menu_path(item), class: "btn btn-danger", method: :delete, remote: true, data: { confirm: "Delete '#{item.name}'?" } do %>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      <% end %>
 
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
 
-          <% end %>
+            <% end %>
 
 
+          </div>
         </div>
-      </div>
-
+      <% end %>
 
     </div>
 

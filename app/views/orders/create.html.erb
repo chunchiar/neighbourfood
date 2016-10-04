@@ -1,0 +1,80 @@
+<div class="container" id="product-page">
+  <div class="row">
+    <!-- left side -->
+    <div class="col-md-6" id="product-left">
+
+      <h1 class="prod-title"><%= @product.name %></h1>
+      <div class="prod-image">
+        <%= image_tag @product.image1, class: "img-responsive" %>
+      </div>
+
+      <div class="prod-desc">
+        <%= @product.description %>
+      </div>
+
+      <div class="prod-pork-beef">
+
+        <% if @product.has_pork %>
+          <div class="contains">Contains Pork</div>
+        <% end %>
+
+        <% if @product.has_beef %>
+          <div class="contains">Contains Beef</div>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <!-- right side -->
+    <div class="col-md-6" id="product-right">
+      <div class="prod-location">
+        <div class="prod-map">
+        </div>
+      </div>
+      <div class="prod-collect"><span>Collection Date:</span> <%= @product.collect.strftime("%d/%m/%Y") %></div>
+      <div class="prod-collect"><span>Collection Time:</span> <%= @product.collect.strftime("%l:%M%p") %></div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" id="about-chef">
+      <hr />
+      <div class="chef-profile">
+        <% if @product.user.profile_image? %>
+          <%= image_tag @product.user.profile_image, class: "profile-img img-responsive" %>
+        <% end %>
+      </div>
+
+      <div class="chef-store">
+        <h3><strong><%= @product.user.store_name %></strong></h3>
+        <h4>by <strong><%= link_to @product.user.name, user_path(@product.user) %></strong></h4>
+      </div>
+
+      <div id="info-con">
+        <div class="info-title">About Chef</div>
+        <div class="info-desc"><%= @product.user.about %></div>
+
+        <div class="info-title">Chef's Rating</div>
+        <div class="info-desc">@@@@@</div>
+
+
+        <%if current_user%>
+          <div>
+            <%= link_to follow_path(chef_id: @product.user.id), method: :post, remote: true, class: "btn #{@class} btn-block", id:"follow-btn" do %>
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <span class="btn-text"><%= @text %></span>
+            <% end %>
+          </div>
+        <% else %>
+          <div>
+            <%= link_to new_user_session_path, class: "btn btn-success btn-block", id:"follow-btn" do %>
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <span class="btn-text">Follow Chef</span>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

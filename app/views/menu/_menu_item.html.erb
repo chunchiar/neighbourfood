@@ -2,7 +2,7 @@
   <div class="inner">
     <div class="menu-img">
       <%= image_tag item.image1.optimised , class: "img-responsive"%>
-      <div class="menu-price">RM <%= item.price %></div>
+      <div class="menu-price"><%=number_to_currency(item.price, unit: "RM")%></div>
     </div>
     <div class="info-holder">
       <div class="name-holder">

@@ -63,6 +63,24 @@
             <%= f.text_field :address, autofocus: true %>
           </div>
 
+          <% if current_user&.chef? %>
+          <div class="field">
+            <%= f.label "Bank Name" %><br />
+            <%= f.text_field :bank, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label "Account Holder Name" %><br />
+            <%= f.text_field :acc_name, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label "Account Number" %><br />
+            <%= f.text_field :acc_no, autofocus: true %>
+          </div>
+          <% end %>
+
+
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
