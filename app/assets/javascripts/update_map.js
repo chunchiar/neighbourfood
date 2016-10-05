@@ -1,15 +1,11 @@
-$(document).on("turbolinks:load",
-function(){
-  if($("#update_map")){
+function updateMap(target, input_target){
+  var data = input_target.val();
+  var html = '<iframe id="map_frame" width="100%" height="350px" frameborder="0" scrolling="no" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQCk2YvCGWPw5Joa9nzpSOMrE42o3IF6g&q='+data+'"></iframe>'
+  $(target).html(html);
+}
 
-    $("#user_address").on("blur", function(){
-        console.log(this.value);
-        $("#update_map").html("<iframe id=\"map_frame\" "
-                              + "width=\"450px\" height=\"300px\" frameborder=\"0\" scrolling=\"no\" "
-                              + "src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyCQCk2YvCGWPw5Joa9nzpSOMrE42o3IF6g&q="
-                              + this.value+"\"></iframe>");
-    }
-
-    )
-  }
-})
+function loadMap(target, input_target){
+  var data = input_target;
+  var html = '<iframe id="map_frame" width="100%" height="350px" frameborder="0" scrolling="no" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQCk2YvCGWPw5Joa9nzpSOMrE42o3IF6g&q='+data+'"></iframe>'
+  $(target).html(html);
+}

@@ -2,17 +2,17 @@ class LocationsController < ApplicationController
 
   def index
     if params[:search].present?
-      #@chefs = User.cooks.near(params[:search])
+      #@chefs = User.chef.near(params[:search])
       coordinates = Geocoder.coordinates(params[:search])
       if coordinates.length > 0
-        @chefs = User.cooks.near(coordinates)
+        @chefs = User.chef.near(coordinates)
         @mapCenter = {
           "latitude" => coordinates[0],
           "longitude" => coordinates[1]
         }
       end
     else
-      @chefs = User.cooks
+      @chefs = User.chef
     end
 
     @hash = Gmaps4rails.build_markers(@chefs) do |chef, marker|

@@ -63,7 +63,21 @@
             <%= f.text_field :address, autofocus: true %>
           </div>
 
-          <div id=update_map></div>
+          <div id="update_map">
+
+          </div>
+
+          <script>
+          $( document ).ready(function() {
+
+            loadMap($("#update_map"), "<%= resource.address %>")
+
+            $("#user_address").keypress(function (e) {
+              updateMap($("#update_map"), $("#user_address"))
+            });
+
+          })
+          </script>
 
           <% if current_user&.chef? %>
           <div class="field">
