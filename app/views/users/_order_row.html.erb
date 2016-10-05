@@ -1,0 +1,16 @@
+<tr>
+  <td class="date">
+    <%= order.created_at.strftime("%d/%m/%y") %>
+  </td>
+  <td class="img">
+    <a href="<%= menu_path(order.product) %>">
+      <%= image_tag order.product.image1 , class: "img-responsive", alt: order.product.name%>
+    </a>
+
+  </td>
+  <td><a href="<%= menu_path(order.product) %>"><%= order.product.name %></a></td>
+  <td><%= order.quantity %></td>
+  <td class="price"><%= number_to_currency(order.product.price, unit: "RM") %></td>
+  <td class="total"><%= number_to_currency(order.product.price * order.quantity, unit: "RM") %></td>
+  <td><%= link_to order.payment_id, order_path(order) %></td>
+</tr>

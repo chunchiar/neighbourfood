@@ -2,12 +2,27 @@
   <div class="inner">
     <div class="menu-img">
       <%= image_tag item.image1.optimised , class: "img-responsive"%>
-      <div class="menu-price">RM <%= item.price %></div>
+      <div class="menu-price"><%=number_to_currency(item.price, unit: "RM")%></div>
+
+      <% if local_assigns.has_key? :expire  %>
+      <div class="date-countdown" id="dc-<%= item.id %>">
+        17 days 21:53:24
+      </div>
+      <script type="text/javascript">
+        $("#dc-<%= item.id %>")
+        .countdown("<%= item.expire.strftime("%Y/%m/%d %H:%M:%S") %>", function(event) {
+          $(this).text(
+            event.strftime('%D days %H:%M:%S')
+          );
+        });
+      </script>
+      <% end %>
+
     </div>
     <div class="info-holder">
       <div class="name-holder">
         <h4><%= item.user.store_name %></h4>
-        <h5><%= item.user.name %></h5>
+        <h5>by <%= link_to item.user.name, user_path(item.user) %></h5>
       </div>
       <div class="profile-img-holder">
         <%= image_tag item.user.profile_image.thumb , class: "img-responsive"%>

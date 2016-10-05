@@ -15,3 +15,5 @@ rails g model Rating giver_id:integer receiver_id:integer type:string score:inte
 rails g model Review giver_id:integer receiver_id:integer content:text
 
 rails g model Comment product_id:integer user_id:integer content:text
+
+rails g model Order user_id:integer product_id:integer phone:string address:text

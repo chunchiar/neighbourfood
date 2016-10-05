@@ -1,0 +1,9 @@
+<tr>
+  <td><%= order.payment_id%></td>
+  <td><%= link_to order.user.name, user_path(order.user), target:"_blank" %></td>
+  <td><%= order.phone%></td>
+  <td><%= order.email%></td>
+  <td><%= order.address%></td>
+  <td><%= order.quantity%></td>
+  <td><%=number_to_currency(order.total_cost, unit: "RM")%></td>
+</tr>

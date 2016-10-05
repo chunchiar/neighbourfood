@@ -27,9 +27,36 @@
         <div class="info-desc"><%= @user.created_at.strftime('%b %d, %Y') %></div>
 
         <% if @user&.chef? %>
-        <div class="info-title">Your Rating</div>
-        <div class="info-desc">@@@@@</div>
+
+          <div class="info-title">Rating</div>
+          <div class="info-desc"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span></div>
+
+
+          <%if current_user != @user %>
+            <div class="info-title mar20top">
+            <%if current_user%>
+              <div>
+                <%= link_to follow_path(chef_id: @user.id), method: :post, remote: true, class: "btn #{@class} btn-block", id:"follow-btn" do %>
+                  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <span class="btn-text"><%= @text %></span>
+                <% end %>
+              </div>
+            <% else %>
+              <div>
+                <%= link_to new_user_session_path, class: "btn btn-success btn-block", id:"follow-btn" do %>
+                  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <span class="btn-text">Follow Chef</span>
+                <% end %>
+              </div>
+            <% end %>
+            </div>
+          <% end %>
+
         <% end %>
+
+
       </div>
 
     </div>
@@ -42,6 +69,40 @@
         <div><%= @user.about %></div>
       </div>
 
+
+      <% if @orders.length > 0 && current_user == @user%>
+        <div class="profile-row">
+          <h2 class="profile-title">My Orders</h2>
+          <div class="table-con">
+            <table class="table table-bordered">
+              <tr class="table-header">
+                <td class="date">Date</td>
+    						<td class="img">Image</td>
+    						<td class="name">Product Name</td>
+    						<td class="quantity">Quantity</td>
+    						<td class="price">Unit Price</td>
+    						<td class="total">Total</td>
+                <td class="view">View Order</td>
+    					</tr>
+              <% @orders.each do |order| %>
+              <%= render partial: "users/order_row", locals: { order: order} %>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @favs.length > 0 && current_user == @user%>
+        <div class="profile-row">
+          <h2 class="profile-title">My Favourite Chefs</h2>
+          <div class="chef-con">
+            <% @favs.each do |fav| %>
+            <%= render partial: "users/fav_row", locals: { chef: fav} %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
       <% if @user&.chef? %>
         <div class="profile-row">
           <h2 class="profile-title">Available Now!</h2>
@@ -52,15 +113,16 @@
             <% end %>
           </div>
         </div>
-
-        <div class="profile-row">
-          <h2 class="profile-title">Past Menu</h2>
-          <div class="menu-con">
-            <% @past_menus.each do |item| %>
-              <%= render partial: "menu/menu_item", locals: {item: item} %>
-            <% end %>
+        <% if @past_menus.length > 0 %>
+          <div class="profile-row">
+            <h2 class="profile-title">Past Menu</h2>
+            <div class="menu-con">
+              <% @past_menus.each do |item| %>
+                <%= render partial: "menu/menu_item", locals: {item: item} %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
 
     </div>

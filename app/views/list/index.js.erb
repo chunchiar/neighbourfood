@@ -1,0 +1,12 @@
+$("#order-con").html("<%=j render partial: 'list/orders_show', locals: { item: @product, orders: @orders } %>")
+$("#order-con").slideDown();
+$('html, body').animate({
+    scrollTop: $("#order-con").offset().top
+}, 1000);
+
+$('.close-btn').click(function(){
+  $("#order-con").slideUp();
+  $('html, body').animate({
+      scrollTop: $("#profile-right").offset().top
+  }, 1000);
+})

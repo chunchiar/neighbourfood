@@ -1,16 +1,28 @@
 class MenuController < ApplicationController
   respond_to :js
-  before_action :authenticate_user!
-  before_action :checkifchef
+  before_action :authenticate_user!, except: [:show]
+  before_action :checkifchef, except: [:show]
   before_action :checkifchefownpost, only: [:edit, :relist]
 
-  def index
-    @product = Product.friendly.find(params[:id])
-  end
-
   def show
+    @client_token = Braintree::ClientToken.generate
     # @product = Product.find_by(id: params[:id])
     @product = Product.friendly.find(params[:id])
+    @order = Order.new
+    @orders = @product.orders
+    @total_left = @product.pax_total - @orders.sum(:quantity)
+
+    if current_user
+      @fav = Favourite.find_by(keeper_id: current_user.id, fav_id: @product.user.id)
+      if @fav
+        @class = "btn-danger"
+        @text = "Unfollow Chef"
+      else
+        @class = "btn-success"
+        @text = "Follow Chef"
+      end
+    end
+
   end
 
   def new

@@ -1,9 +1,36 @@
+
 <div class="search text-center">
     <%= form_tag location_path, :method => :get do %>
       <%= text_field_tag :search, params[:search], :placeholder => "Your Location ?", class: "form-control" %>
       <%= submit_tag "What's Cooking!", :class => "btn btn-danger" %>
     <% end %>
 </div>
+
+<div class="container" id="landing">
+  <h1>Latest Menu</h1>
+  <div class="row">
+
+    <% @latest.each do |item| %>
+      <%= render partial: "menu/menu_item", locals: {item: item} %>
+    <% end %>
+
+  </div>
+
+  <h1>Expiring Soon</h1>
+  <div class="row">
+    <% @expiring.each do |item| %>
+      <%= render partial: "menu/menu_item", locals: {item: item, expire: true} %>
+    <% end %>
+  </div>
+
+  <h1>Just Sold</h1>
+  <div class="row">
+    <% @just_sold.each do |order| %>
+      <%= render partial: "menu/menu_item", locals: {item: order.product} %>
+    <% end %>
+  </div>
+
+
 
 <!-- <div class="search">
   <form role="form", class="box-center">
