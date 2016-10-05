@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  # before_action :checkIfOrderBelongsToUser, only: [:show]
+
   TRANSACTION_SUCCESS_STATUSES = [
     Braintree::Transaction::Status::Authorizing,
     Braintree::Transaction::Status::Authorized,
@@ -84,7 +86,15 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
+    if @order == nil
+      redirect_to user_path(current_user)
+      return
+    end
+    
     @product = Product.friendly.find(@order.product_id)
+
+    checkIfOrderBelongsToUser(@order)
+
 
     if current_user
       @fav = Favourite.find_by(keeper_id: current_user.id, fav_id: @product.user.id)
@@ -102,6 +112,12 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:product_id, :quantity, :phone, :email, :address, :total_cost)
+  end
+
+  def checkIfOrderBelongsToUser(order)
+    if order.user != current_user
+      redirect_to user_path(current_user)
+    end
   end
 
 end

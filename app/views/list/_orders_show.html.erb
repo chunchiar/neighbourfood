@@ -1,4 +1,9 @@
-<h3>Orders for: <strong><%= item.name %></strong> <span>(<%=number_to_currency(item.price, unit: "RM")%>)</span></h3>
+<h3>Orders for: <strong><%= link_to item.name, menu_path(item) %></strong> <span>(<%=number_to_currency(item.price, unit: "RM")%>)</span></h3>
+<div class="mar20bottom">
+  Pax Total : <%= item.pax_total%><br/>
+  Pax Left : <%= item.pax_total - orders.sum(:quantity)%>
+</div>
+
 <div class="table-con">
   <table class="table table-bordered">
     <tr class="table-header-2">
@@ -20,6 +25,12 @@
       <% orders.each do |order| %>
         <%= render partial: 'list/orders_show_row', locals: { order: order } %>
       <% end %>
+
+      <tr>
+        <td colspan="5"></td>
+        <td><strong><%= orders.sum(:quantity)%></strong></td>
+        <td><strong><%= number_to_currency(orders.sum(:total_cost), unit: "RM") %></strong></td>
+      </tr>
 
     <% end %>
 
