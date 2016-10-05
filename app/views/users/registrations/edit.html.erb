@@ -63,6 +63,8 @@
             <%= f.text_field :address, autofocus: true %>
           </div>
 
+          <div id=update_map></div>
+
           <% if current_user&.chef? %>
           <div class="field">
             <%= f.label "Bank Name" %><br />

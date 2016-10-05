@@ -1,0 +1,60 @@
+<%= form_tag location_path, :method => :get do %>
+  <%= text_field_tag :search, params[:search], :id => "pac-input", :placeholder => "Your Location ?", class: "form-control" %>
+<% end %>
+
+<br>
+
+<div style='width: 1250px;'>
+  <div id="map" style='width: 1250px; height: 500px;'></div>
+</div>
+
+<script>
+
+var mapCenter = {"coords": <%=raw @mapCenter.to_json %> };
+var mapStyle = [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}];
+
+// var updateMap = function(){
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ internal: {id: 'map'}, provider: {
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles:    mapStyle
+  } }, function(){
+    if(mapCenter.coords===null){
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(displayOnMap);
+      }
+    }else{
+      displayOnMap(mapCenter);
+    }
+  });
+// }
+
+function displayOnMap(coordinates){
+  var position = {
+    lat: coordinates.coords.latitude,
+    lng: coordinates.coords.longitude
+  }
+  var marker = handler.addMarker(position);
+  //convert to json and display the chef's address on the map
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.map.centerOn(marker);
+  handler.bounds.extendWith(markers);
+  handler.getMap().setZoom(15);
+  //infoWindow.setContent('<img src="/common/logo.png" >');
+  //infoWindow.open(map, marker);
+
+  var map = document.getElementById('map');
+  var input = document.getElementById('pac-input');
+  var options = {
+    componentRestrictions: {country: 'my'}
+  };
+  var searchBox = new google.maps.places.SearchBox(input);
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
+};
+
+// $("#pac-input").on("blur", updateMap());
+///project geocoding api key= AIzaSyBtM5dq-gJcORAiWB4LXob7rYXL1B06yrk
+///project api key= AIzaSyDjoC5B_BeZt3Vr_FE-lomEzZKtU7AQ0Ic
+///places web api=AIzaSyDgs2A9GtafsJWP01fpAN62RFHs4NjE8_Y
+
+</script>

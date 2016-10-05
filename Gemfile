@@ -41,7 +41,10 @@ gem 'kaminari' #this is for pagination
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'friendly_id', github: 'norman/friendly_id'
-gem 'remotipart'
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'gmaps4rails'
+gem 'devise'
+gem 'geocoder'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
 gem "braintree", "~> 2.2"

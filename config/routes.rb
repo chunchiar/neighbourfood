@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   root to: 'landing#index'
 
+  get "location", to: "locations#index"
   get "how-it-works", to:"others#how"
 
   resources :menu do

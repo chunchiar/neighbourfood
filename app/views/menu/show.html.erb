@@ -52,7 +52,7 @@
       </div>
       <div class="prod-location">
         <div class="prod-map">
-          <img width="550" src="http://maps.googleapis.com/maps/api/staticmap?center=cyberjaya&zoom=18&scale=false&size=550x240&maptype=roadmap&key=AIzaSyCvufbqzO_iNDmBMY4VV-3h_-Xj53r7uMg&format=png&visual_refresh=true" alt="Google Map of cyberjaya" class: "img-responsive">
+          <%= image_tag src= "http://maps.google.com/maps/api/staticmap?size=200x200&sensor=false&zoom=15&markers=#{@user.latitude}%2C#{@user.longitude}" class: "img-responsive" %>
         </div>
 
         <div class="prod-address">

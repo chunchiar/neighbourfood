@@ -15,6 +15,8 @@
 //= require jquery.remotipart
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .

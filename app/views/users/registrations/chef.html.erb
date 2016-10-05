@@ -10,15 +10,17 @@
 
           <%= form_for(current_user, as: resource_name, url: users_reg_a_chef_path, remote: true, multipart: true, html: { method: :put }, authenticity_token: true) do |f| %>
 
-            <div class="field">
-              <%= f.label :store_name %><br />
-              <%= f.text_field :store_name, autofocus: true %>
-            </div>
+          <div class="field">
+            <%= f.label :store_name %><br />
+            <%= f.text_field :store_name, autofocus: true %>
+          </div>
 
-            <div class="field">
-              <%= f.label :address %><br />
-              <%= f.text_field :address, autofocus: true %>
-            </div>
+          <div class="field">
+            <%= f.label :address %><br />
+            <%= f.text_field :address, autofocus: true %>
+          </div>
+
+          <div id=registration_map></div>
 
             <div class="field">
               <%= f.label "Bank Name" %><br />
@@ -37,20 +39,20 @@
 
             <% unless current_user.provider == "facebook" %>
 
-              <div class="field">
-                <%= f.label :current_password %><br />
-                <%= f.password_field :current_password, autocomplete: "off" %>
-              </div>
+          <div class="field">
+            <%= f.label :current_password %><br />
+            <%= f.password_field :current_password, autocomplete: "off" %>
+          </div>
 
-            <% end %>
+          <% end %>
 
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-            <% end %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
 
-            <div class="actions mar20top">
-              <%= f.submit "Sign Up as Chef" , class: "btn btn-embossed btn-beige" %>
-            </div>
+          <div class="actions mar20top">
+            <%= f.submit "Sign Up as Chef" , class: "btn btn-embossed btn-beige" %>
+          </div>
           <% end %>
 
         </div>

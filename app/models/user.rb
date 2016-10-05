@@ -20,6 +20,16 @@ class User < ApplicationRecord
 
   enum role: [:customer, :chef, :admin]
 
+  scope :cooks, -> { where(role: 1) }
+  #field :coordinates, :type => Array
+  #attr_accessible :address, :latitude, :longitude
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode, :if => :address_changed?          # auto-fetch coordinates
+
+  #def address
+    #[address, state, country].compact.join(', ')
+  #end
+
   validates :name, presence: true
   validates :email, presence: true
 

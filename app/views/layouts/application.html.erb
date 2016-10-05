@@ -5,10 +5,15 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDgs2A9GtafsJWP01fpAN62RFHs4NjE8_Y&libraries=geometry,places"></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'> <!-- only if you need custom infoboxes --></script>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
     <div class="content-wrapper">
       <%= render partial: 'common/header' %>
 
@@ -21,5 +26,6 @@
       <div id="flash-messages-container"><%= render partial: "common/flash_messages" %></div>
 
     </div>
+
   </body>
 </html>
