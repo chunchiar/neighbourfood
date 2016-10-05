@@ -7,30 +7,19 @@
 
       <div>
         <div class="payment-detail">
-          <div class="payment-block">
-            <strong>To pay:</strong><br/>
-            Menu Price: <%=number_to_currency(@product.price, unit: "RM")%><br/>
-            Total Price: <%=number_to_currency(@product.price, unit: "RM")%> x <%= @order.quantity %> = <strong>RM<%= @product.price * @order.quantity%></strong>
-          </div>
 
           <div class="payment-block">
-            <strong>Bank Details:</strong><br/>
-            <%= @product.user.bank %><br/>
-            <%= @product.user.acc_name %><br/>
-            <%= @product.user.acc_no %>
+            Order ID :
+            <div class="alert alert-success">
+              <span><%= @order.payment_id %></span>
+            </div>
+
+            Order Date : <%= @order.created_at.strftime("%d/%m/%Y") %><br/>
+            Order Quantity : <%= @order.quantity %><br/>
+            Menu Price : <%=number_to_currency(@product.price, unit: "RM")%><br/>
+            Total Price : <%=number_to_currency(@order.total_cost, unit: "RM")%>
           </div>
 
-          <div class="payment-block">
-            <strong>Please send the bank-in receipt to:</strong><br/>
-            E: <%= @product.user.email %><br/>
-            T: <%= @product.user.phone %><br/>
-          </div>
-
-          <div class="payment-block">
-            <strong>Order Details:</strong><br/>
-            Order ID: <%= @order.id %><br/>
-            Order Date: <%= @order.created_at.strftime("%d/%m/%Y") %><br/>
-          </div>
         </div>
       </div>
 

@@ -1,0 +1,31 @@
+<h3>Orders for: <strong><%= item.name %></strong> <span>(<%=number_to_currency(item.price, unit: "RM")%>)</span></h3>
+<div class="table-con">
+  <table class="table table-bordered">
+    <tr class="table-header-2">
+      <td class="order_id">Order ID</td>
+      <td class="name">Name</td>
+      <td class="phone">Phone</td>
+      <td class="email">Email</td>
+      <td class="address">Address</td>
+      <td class="quantity">Quantity</td>
+      <td class="total">Total</td>
+    </tr>
+
+    <% if orders.length == 0 %>
+
+      <tr><td colspan="7">No Orders</td></tr>
+
+    <% else %>
+
+      <% orders.each do |order| %>
+        <%= render partial: 'list/orders_show_row', locals: { order: order } %>
+      <% end %>
+
+    <% end %>
+
+
+  </table>
+</div>
+<div class="close-btn">
+  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+</div>

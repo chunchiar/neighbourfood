@@ -12,5 +12,5 @@
   <td><%= order.quantity %></td>
   <td class="price"><%= number_to_currency(order.product.price, unit: "RM") %></td>
   <td class="total"><%= number_to_currency(order.product.price * order.quantity, unit: "RM") %></td>
-  <td><%= link_to "View", order_path(order) %></td>
+  <td><%= link_to order.payment_id, order_path(order) %></td>
 </tr>

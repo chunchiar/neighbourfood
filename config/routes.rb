@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show]
-  resources :orders, only: [:create, :show]
+  resources :orders, only: [:create, :show] do
+    resources :list, only: [:index]
+  end
 
   root to: 'landing#index'
 

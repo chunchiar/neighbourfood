@@ -5,6 +5,7 @@ class MenuController < ApplicationController
   before_action :checkifchefownpost, only: [:edit, :relist]
 
   def show
+    @client_token = Braintree::ClientToken.generate
     # @product = Product.find_by(id: params[:id])
     @product = Product.friendly.find(params[:id])
     @order = Order.new

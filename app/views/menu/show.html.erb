@@ -52,7 +52,7 @@
       </div>
       <div class="prod-location">
         <div class="prod-map">
-          <img width="550" src="http://maps.googleapis.com/maps/api/staticmap?center=cyberjaya&zoom=18&scale=false&size=550x240&maptype=roadmap&key=AIzaSyCvufbqzO_iNDmBMY4VV-3h_-Xj53r7uMg&format=png&visual_refresh=true" alt="Google Map of cyberjaya">
+          <img width="550" src="http://maps.googleapis.com/maps/api/staticmap?center=cyberjaya&zoom=18&scale=false&size=550x240&maptype=roadmap&key=AIzaSyCvufbqzO_iNDmBMY4VV-3h_-Xj53r7uMg&format=png&visual_refresh=true" alt="Google Map of cyberjaya" class: "img-responsive">
         </div>
 
         <div class="prod-address">
@@ -66,13 +66,22 @@
         <% if @product.expire > DateTime.now %>
           <% if current_user != nil %>
             <div id="order-form">
-              <%= form_for(@order, url: orders_path, method: :post, html: { id: "add-product-form" }) do |f| %>
+              <%= form_for(:braintree, url: orders_path, method: :post, html: { id: "add-product-form" }) do |f| %>
 
-              <%= f.number_field :product_id, required: true, value:"#{@product.id}", style: "display:none;" %>
+                <%= f.number_field :product_id, required: true, value:"#{@product.id}", style: "display:none;" %>
+
+                <input id="menu_price" name="price" type="hidden"  value="<%= @product.price %>">
+                <input id="total_cost" name="total_cost" type="hidden"  value="<%= @product.price %>">
+                <input id="payment_method_nonce" name="payment_method_nonce" type="hidden"  value="">
 
                 <div class="field">
                   <%= f.label "Quantity :" %><br />
-                  <%= f.number_field :quantity, autofocus: true, min: 1, value: 1, required: true %>
+                  <%= f.number_field :quantity, autofocus: true, min: 1, value: 1, required: true, id: "quantity" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label "Total Cost :" %><br />
+                  <%= f.number_field :total, autofocus: true, min: 1, value: number_to_currency(@product.price, unit: "") , required: true, readonly: true, id: "total" %>
                 </div>
 
                 <div class="field">
@@ -90,13 +99,21 @@
                   <%= f.text_field :address, autofocus: true, placeholder: "Address", value:"#{current_user.try(:address)}" %>
                 </div>
 
+                <div class="bt-drop-in-wrapper">
+                  <div id="dropin-container"></div>
+                </div>
+
                 <button class="btn btn-embossed btn-beige prod-order-btn" type="submit" id="checkout-btn"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Check Out</button>
+                <div id="loading" style="display:none;">
+                  <%= image_tag "common/loading.gif" %>
+                </div>
               <% end %>
             </div>
           <% end %>
           <button class="btn btn-embossed btn-beige prod-order-btn" type="submit" id="order-btn"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Order Now</button>
           <script>
           $( document ).ready(function() {
+
             $('#order-btn').click(function(){
               <% if current_user != nil %>
                 $(this).slideUp();
@@ -104,10 +121,61 @@
               <% else %>
                 window.location.href = "<%=new_user_session_path%>";
               <% end %>
-
-
             })
+
+            $("#checkout-btn").click(function(){
+              $("#checkout-btn").css("display","none");
+              $("#loading").css("display","block");
+            })
+
+            $("#quantity").keypress(function (e) {
+
+              if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+              }
+
+            });
+
+            $("#quantity").change(function() {
+              // console.log($("#quantity").val() * $("#menu_price").val())
+              var total = ($("#quantity").val() * $("#menu_price").val()).toFixed(2);
+              $("#total").val(total);
+              $("#total_cost").val(total);
+            });
+
           });
+          </script>
+          <script>
+            $.getScript( "https://js.braintreegateway.com/v2/braintree.js", function() {
+              braintree.setup('<%= @client_token %>', 'dropin', {
+                container: 'dropin-container',
+                onPaymentMethodReceived: function (obj) {
+                  // Do some logic in here.
+                  // When you're ready to submit the form:
+                  console.log('onPaymentMethodReceived');
+                  console.log(obj["nonce"]);
+                  $("#payment_method_nonce").val(obj["nonce"]);
+                  $("#add-product-form").submit();
+                },
+                onError: function (obj) {
+                  if (obj.type == 'VALIDATION') {
+                    // Validation errors contain an array of error field objects:
+                    console.log(obj.details.invalidFields);
+
+                  } else if (obj.type == 'SERVER') {
+                    // If the customer's browser cannot connect to Braintree:
+                    console.log(obj.message); // "Connection error"
+                    // If the credit card failed verification:
+                    console.log(obj.message); // "Credit card is invalid"
+                    console.log(obj.details); // Object with error-specific information
+                  }
+
+                  $("#checkout-btn").css("display","block");
+                  $("#loading").css("display","none");
+                }
+              });
+              $("#order-btn").slideDown();
+            });
           </script>
         <% end %>
       <% end %>
@@ -134,7 +202,11 @@
         <div class="info-desc"><%= @product.user.about %></div>
 
         <div class="info-title">Chef's Rating</div>
-        <div class="info-desc">@@@@@</div>
+        <div class="info-desc"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-star" aria-hidden="true"></span></div>
 
         <%if current_user != @product.user%>
           <%if current_user%>

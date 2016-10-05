@@ -301,7 +301,27 @@ label {
 }
 
 .menu-con {
-    margin: 0 -15px;
+  margin: 0 -15px;
+  overflow: auto;
+}
+
+#order-con {
+  background-color: $light-grey;
+  padding: 20px;
+  display: none;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: $red;
+  cursor: pointer;
+}
+
+#order-con h3 strong {
+  color: $red;
 }
 
 .menu-item{
@@ -378,6 +398,10 @@ label {
     line-height: 27px;
     color: $red;
   }
+
+  .view-orders {
+    margin-top: 20px;
+  }
 }
 
 #menu{
@@ -395,7 +419,7 @@ label {
   border-radius: 0;
 }
 
-.table-header{
+.table-header, .table-header-2{
 	background-color: #f8f8f8;
   font-weight: bold;
 }
@@ -406,6 +430,15 @@ label {
 .table-header .quantity{width:15%}
 .table-header .price{width:15%}
 .table-header .total{width:15%}
+
+.table-header-2 .order_id{width:15%}
+.table-header-2 .name{width:15%}
+.table-header-2 .phone{width:15%}
+.table-header-2 .email{width:15%}
+.table-header-2 .address{width:15%}
+.table-header-2 .quantity{width:10%}
+.table-header-2 .total{width:15%}
+
 
 .table-bordered {
   border: 1px solid #ddd;
@@ -472,6 +505,10 @@ label {
     width: 100%;
   }
 
+  #order-btn{
+    display: none;
+  }
+
   .prod-pork-beef {
     margin: 20px 0;
   }
@@ -505,6 +542,11 @@ label {
   display: none;
 }
 
+#loading {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .payment-block{
   margin-bottom: 20px;
 }
@@ -517,6 +559,17 @@ label {
   background-color: $light-grey;
   padding: 20px;
   margin-bottom: 20px;
+}
+
+.payment-block .alert-success {
+    border-radius: 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+.payment-block .alert-success span{
+  color: $red;
+  font-weight: bold;
 }
 
 #about-chef{
