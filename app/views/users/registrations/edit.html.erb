@@ -63,6 +63,8 @@
             <%= f.text_field :address, autofocus: true %>
           </div>
 
+          <div id=update_map></div>
+
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
