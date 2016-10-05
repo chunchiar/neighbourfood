@@ -1,0 +1,11 @@
+<div class="col-md-2 fav-chef-item">
+  <div class="chef-img">
+    <a href="<%= user_path(chef.fav) %>">
+      <%= image_tag chef.fav.profile_image.thumb , class: "img-responsive"%>
+    </a>
+  </div>
+  <div class="name-holder">
+    <h4><%= chef.fav.store_name %></h4>
+    <h5>by <span><%= link_to chef.fav.name, user_path(chef.fav) %></span></h5>
+  </div>
+</div>

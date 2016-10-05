@@ -301,7 +301,27 @@ label {
 }
 
 .menu-con {
-    margin: 0 -15px;
+  margin: 0 -15px;
+  overflow: auto;
+}
+
+#order-con {
+  background-color: $light-grey;
+  padding: 20px;
+  display: none;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: $red;
+  cursor: pointer;
+}
+
+#order-con h3 strong {
+  color: $red;
 }
 
 .menu-item{
@@ -378,6 +398,10 @@ label {
     line-height: 27px;
     color: $red;
   }
+
+  .view-orders {
+    margin-top: 20px;
+  }
 }
 
 #menu{
@@ -393,6 +417,32 @@ label {
   border: none;
   background-color: #fff;
   border-radius: 0;
+}
+
+.table-header, .table-header-2{
+	background-color: #f8f8f8;
+  font-weight: bold;
+}
+
+.table-header .date{width:10%}
+.table-header .img{width:10%}
+.table-header .name{width:20%}
+.table-header .quantity{width:15%}
+.table-header .price{width:15%}
+.table-header .total{width:15%}
+
+.table-header-2 .order_id{width:15%}
+.table-header-2 .name{width:15%}
+.table-header-2 .phone{width:15%}
+.table-header-2 .email{width:15%}
+.table-header-2 .address{width:15%}
+.table-header-2 .quantity{width:10%}
+.table-header-2 .total{width:15%}
+
+
+.table-bordered {
+  border: 1px solid #ddd;
+  text-align: center;
 }
 
 #product-page{
@@ -431,6 +481,12 @@ label {
     margin-bottom: 20px;
   }
 
+  .prod-address {
+    background-color: $light-grey;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
   .prod-collect {
     font-size: 19px;
     margin-bottom: 10px;
@@ -445,7 +501,12 @@ label {
     font-size: 22px;
     font-weight: bold;
     display: block;
-    margin-top: 30px;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  #order-btn{
+    display: none;
   }
 
   .prod-pork-beef {
@@ -460,6 +521,121 @@ label {
     border-radius: 6px;
   }
 
+}
+
+#item_quantity_field {
+
+}
+
+#add-product-form{
+  // display: none;
+}
+
+#add-product-form input {
+  padding: 10px 30px;
+  border: solid 1px #ccc;
+  font-size: 29px;
+  width: 100%;
+}
+
+#order-form{
+  display: none;
+}
+
+#loading {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.payment-block{
+  margin-bottom: 20px;
+}
+
+.payment-block:last-child{
+  margin-bottom: 0px;
+}
+
+.payment-detail{
+  background-color: $light-grey;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.payment-block .alert-success {
+    border-radius: 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+.payment-block .alert-success span{
+  color: $red;
+  font-weight: bold;
+}
+
+#about-chef{
+  position: relative;
+
+  hr{
+    border-top: 4px solid $light-grey;
+  }
+
+  .chef-profile{
+    width: 60px;
+  }
+
+  .chef-store strong{
+    color: $red;
+  }
+
+  .chef-store {
+    position: absolute;
+    top: 30px;
+    left: 90px;
+  }
+
+  .chef-store h3{margin-bottom: 3px}
+  .chef-store h4{margin-top: 0}
+
+  .info-title {
+    font-weight: bold;
+    color: $red;
+  }
+  .info-desc {
+    margin-bottom: 20px;
+  }
+}
+
+.fav-chef-item{
+  .chef-img img{
+    border-radius: 50%;
+  }
+
+  .name-holder h4{
+    font-weight: bold;
+    color: $red
+  }
+
+  .name-holder h5 span{
+    color: $red
+  }
+
+}
+
+#landing{
+  h1{
+    @extend .baloo;
+    color: $red;
+    font-size: 60px;
+  }
+}
+
+.date-countdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff5c60;
+  color: #fff;
+  padding: 4px;
 }
 
 

@@ -44,6 +44,7 @@ gem 'friendly_id', github: 'norman/friendly_id'
 gem 'remotipart'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
+gem "braintree", "~> 2.2"
 
 group :development, :test do
   gem 'pry'

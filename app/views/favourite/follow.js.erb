@@ -1,0 +1,13 @@
+$('#flash-messages-container').html("<%=j render partial: 'common/flash_messages' %>")
+$(".flash-messages").css("top", "100px" );
+$("#flash-messages-container").fadeIn("fast");
+
+<% if @success == 0 %>
+  $("#follow-btn .btn-text").html("Follow Chef");
+  $("#follow-btn").removeClass("btn-danger");
+  $("#follow-btn").addClass("btn-success");
+<% else %>
+  $("#follow-btn .btn-text").html("Unfollow Chef");
+  $("#follow-btn").addClass("btn-danger");
+  $("#follow-btn").removeClass("btn-success");
+<% end %>

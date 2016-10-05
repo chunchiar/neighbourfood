@@ -1,0 +1,66 @@
+<div class="container" id="product-page">
+  <div class="row">
+    <!-- left side -->
+    <div class="col-md-6" id="product-left">
+
+      <h1 class="prod-title">Order Successful!</h1>
+
+      <div>
+        <div class="payment-detail">
+
+          <div class="payment-block">
+            Order ID :
+            <div class="alert alert-success">
+              <span><%= @order.payment_id %></span>
+            </div>
+
+            Order Date : <%= @order.created_at.strftime("%d/%m/%Y") %><br/>
+            Order Quantity : <%= @order.quantity %><br/>
+            Menu Price : <%=number_to_currency(@product.price, unit: "RM")%><br/>
+            Total Price : <%=number_to_currency(@order.total_cost, unit: "RM")%>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="prod-location">
+        <div class="prod-map">
+          <img width="550" src="http://maps.googleapis.com/maps/api/staticmap?center=cyberjaya&zoom=18&scale=false&size=550x240&maptype=roadmap&key=AIzaSyCvufbqzO_iNDmBMY4VV-3h_-Xj53r7uMg&format=png&visual_refresh=true" alt="Google Map of cyberjaya">
+        </div>
+
+        <div class="prod-address">
+          <%= @product.location %>
+        </div>
+      </div>
+      <div class="prod-collect"><span>Collection Date:</span> <%= @product.collect.strftime("%d/%m/%Y") %></div>
+      <div class="prod-collect"><span>Collection Time:</span> <%= @product.collect.strftime("%l:%M%p") %></div>
+
+    </div>
+
+    <!-- right side -->
+    <div class="col-md-6" id="product-right">
+      <h1 class="prod-title"><%= @product.name %></h1>
+      <div class="prod-image">
+        <%= image_tag @product.image1, class: "img-responsive" %>
+      </div>
+
+      <div class="prod-desc">
+        <%= @product.description %>
+      </div>
+
+      <div class="prod-pork-beef">
+
+        <% if @product.has_pork %>
+          <div class="contains">Contains Pork</div>
+        <% end %>
+
+        <% if @product.has_beef %>
+          <div class="contains">Contains Beef</div>
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

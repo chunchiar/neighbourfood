@@ -1,7 +1,24 @@
-<div class="container">
+<div class="container" id="landing">
+  <h1>Latest Menu</h1>
   <div class="row">
-    <div class="col-md-12">
-      landing page
-    </div>
+
+    <% @latest.each do |item| %>
+      <%= render partial: "menu/menu_item", locals: {item: item} %>
+    <% end %>
+
+  </div>
+
+  <h1>Expiring Soon</h1>
+  <div class="row">
+    <% @expiring.each do |item| %>
+      <%= render partial: "menu/menu_item", locals: {item: item, expire: true} %>
+    <% end %>
+  </div>
+
+  <h1>Just Sold</h1>
+  <div class="row">
+    <% @just_sold.each do |order| %>
+      <%= render partial: "menu/menu_item", locals: {item: order.product} %>
+    <% end %>
   </div>
 </div>
