@@ -568,6 +568,23 @@ label {
 
 }
 
+#landing{
+  h1{
+    @extend .baloo;
+    color: $red;
+    font-size: 60px;
+  }
+}
+
+.date-countdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff5c60;
+  color: #fff;
+  padding: 4px;
+}
+
 
 @media screen and (max-width: 1199px) {
 
