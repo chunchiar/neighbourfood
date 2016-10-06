@@ -15,10 +15,13 @@ class Product < ApplicationRecord
   validates :expire, presence: true
   validates :collect, presence: true
   validates :pax_total, presence: true
-  validates :location, presence: true
+  # validates :location, presence: true
   validates :price, presence: true
   validates :name, presence: true
   validates :description, presence: true
   validates :image1, presence: true
+
+  # geocoded_by :location
+  # after_validation :geocode, :if => :address_changed?
 
 end

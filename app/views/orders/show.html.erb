@@ -25,11 +25,15 @@
 
       <div class="prod-location">
         <div class="prod-map">
-          <img width="550" src="http://maps.googleapis.com/maps/api/staticmap?center=cyberjaya&zoom=18&scale=false&size=550x240&maptype=roadmap&key=AIzaSyCvufbqzO_iNDmBMY4VV-3h_-Xj53r7uMg&format=png&visual_refresh=true" alt="Google Map of cyberjaya">
+          <!-- <img width="550" src="http://maps.googleapis.com/maps/api/staticmap?center=cyberjaya&zoom=18&scale=false&size=550x240&maptype=roadmap&key=AIzaSyCvufbqzO_iNDmBMY4VV-3h_-Xj53r7uMg&format=png&visual_refresh=true" alt="Google Map of cyberjaya"> -->
+          <!-- <a href="http://maps.google.com/?q=<%=@product.user.latitude%>,<%=@product.user.longitude%>" target="_blank"> -->
+          <a href="http://maps.google.com/?q=<%= @product.user.address %>" target="_blank">
+            <%= image_tag src= "http://maps.google.com/maps/api/staticmap?size=555x240&sensor=false&zoom=18&key=AIzaSyCvufbqzO_iNDmBMY4VV-3h_-Xj53r7uMg&format=png&visual_refresh=true&markers=#{@product.user.latitude}%2C#{@product.user.longitude}", class: "img-responsive" %>
+          </a>
         </div>
 
         <div class="prod-address">
-          <%= @product.location %>
+          <%= @product.user.address %>
         </div>
       </div>
       <div class="prod-collect"><span>Collection Date:</span> <%= @product.collect.strftime("%d/%m/%Y") %></div>

@@ -1,1 +1,19 @@
-<iframe id="map_frame" width="100%" height="350px" frameborder="0" scrolling="no" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQCk2YvCGWPw5Joa9nzpSOMrE42o3IF6g&q=magic"+$(this).val()+""></iframe>
+<script>
+$( document ).ready(function() {
+
+  loadMap($("#update_map"), "<%= address %>");
+
+  $("#user_address").keypress(function (e) {
+    updateMapNow();
+  });
+
+  $("#user_address").on("blur", function(){
+    updateMapNow();
+  });
+
+  function updateMapNow(){
+    updateMap($("#update_map"), $("#user_address"));
+  }
+
+})
+</script>

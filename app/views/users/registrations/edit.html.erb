@@ -21,7 +21,7 @@
             <div class="form-group">
                 <div id="preview-image">
                   <% if current_user.profile_image? %>
-                    <%= image_tag current_user.profile_image, class: "profile-img img-responsive" %>
+                    <%= image_tag current_user.profile_image.thumb, class: "profile-img img-responsive" %>
                   <% end %>
                 </div>
               </div>
@@ -63,21 +63,8 @@
             <%= f.text_field :address, autofocus: true %>
           </div>
 
-          <div id="update_map">
-
-          </div>
-
-          <script>
-          $( document ).ready(function() {
-
-            loadMap($("#update_map"), "<%= resource.address %>")
-
-            $("#user_address").keypress(function (e) {
-              updateMap($("#update_map"), $("#user_address"))
-            });
-
-          })
-          </script>
+          <div id="update_map"></div>
+          <%= render partial: "common/map", locals: { address: resource.address} %>
 
           <% if current_user&.chef? %>
           <div class="field">

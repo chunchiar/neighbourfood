@@ -20,7 +20,8 @@
             <%= f.text_field :address, autofocus: true %>
           </div>
 
-          <div id=registration_map></div>
+          <div id="update_map"></div>
+          <%= render partial: "common/map", locals: { address: "KLCC"} %>
 
             <div class="field">
               <%= f.label "Bank Name" %><br />
