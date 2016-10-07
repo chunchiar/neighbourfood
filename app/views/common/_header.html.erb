@@ -14,11 +14,16 @@
     <div class="collapse navbar-collapse" id="navbar-brand-centered">
 
       <ul class="nav navbar-nav">
-        <% unless current_user&.chef? %>
-          <li><%= link_to "Become a Chef", users_become_a_chef_path, class: "btn-chef" %></li>
+        <% if user_signed_in? %>
+          <% unless current_user&.chef? %>
+            <li><%= link_to "Become a Chef", users_become_a_chef_path, class: "btn-chef" %></li>
+          <% else %>
+            <li><%= link_to "My Chef Dashboard", users_chef_path, class: "btn-chef" %></li>
+          <% end %>
         <% else %>
-          <li><%= link_to "My Chef Dashboard", users_chef_path, class: "btn-chef" %></li>
+          <li><%= link_to "Become a Chef", new_user_registration_path, class: "btn-chef" %></li>
         <% end %>
+
 
         <li><%= link_to "How it Works", how_it_works_path %></li>
       </ul>
