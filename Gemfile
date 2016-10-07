@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "2.3.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -35,6 +36,7 @@ gem 'bootstrap-sass'
 gem "fog"
 gem 'carrierwave'
 gem "mini_magick"
+# gem 'cloudinary'
 gem "figaro"
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'kaminari' #this is for pagination
@@ -68,6 +70,10 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+group :production do
+   gem 'rails_12factor'
+ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
