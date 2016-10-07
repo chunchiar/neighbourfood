@@ -1,12 +1,84 @@
 
-<div class="search text-center">
+<!-- <div class="search text-center">
     <%= form_tag location_path, :method => :get do %>
       <%= text_field_tag :search, params[:search], :placeholder => "Your Location ?", class: "form-control" %>
-      <%= submit_tag "What's Cooking!", :class => "btn btn-danger" %>
+      <input type="submit" value="What's Cooking!" class="btn btn-danger" data-disable-with="What's Cooking!">
     <% end %>
-</div>
+</div> -->
 
 <div class="container" id="landing">
+  <div class="row">
+    <%= form_tag location_path, :method => :get, id: "searchform" do %>
+      <%= text_field_tag :search, params[:search], :id => "pac-input", :placeholder => "Location", class: "form-control" %>
+    <% end %>
+
+    <br>
+
+    <div id="map" style='width: 100%; height: 500px;'></div>
+  </div>
+
+  <script>
+
+  var mapCenter = {"coords": <%=raw @mapCenter.to_json %> };
+  var mapStyle = [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}];
+  var handler = Gmaps.build('Google');
+
+  var updateMapNow = function(){
+    handler.buildMap({ internal: {id: 'map'}, provider: {
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      styles:    mapStyle
+    } }, function(){
+      if(mapCenter.coords===null){
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(displayOnMap);
+        }
+      }else{
+        displayOnMap(mapCenter);
+      }
+    });
+  }
+
+  function displayOnMap(coordinates){
+    var position = {
+      lat: coordinates.coords.latitude,
+      lng: coordinates.coords.longitude
+    }
+    var marker = handler.addMarker(position);
+    //convert to json and display the chef's address on the map
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.map.centerOn(marker);
+    handler.bounds.extendWith(markers);
+    handler.getMap().setZoom(15);
+    //infoWindow.setContent('<img src="/common/logo.png" >');
+    //infoWindow.open(map, marker);
+
+    var map = document.getElementById('map');
+    var input = document.getElementById('pac-input');
+    var options = {
+      componentRestrictions: {country: 'my'}
+    };
+    var searchBox = new google.maps.places.SearchBox(input);
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+  };
+
+  $( document ).ready(function() {
+
+    updateMapNow();
+
+    $("#pac-input").change(function() {
+        setTimeout(runmap, 500)
+    });
+
+    function runmap(){
+      console.log("change")
+      console.log($("#pac-input").val());
+      $("#searchform").submit();
+    }
+
+  });
+  </script>
+
+
   <h1>Latest Menu</h1>
   <div class="row">
 
@@ -29,19 +101,4 @@
       <%= render partial: "menu/menu_item", locals: {item: order.product} %>
     <% end %>
   </div>
-
-
-
-<!-- <div class="search">
-  <form role="form", class="box-center">
-    <div class="col-md-9">
-      <div class="form-group centerOn">
-        <label class="sr-only" for="location">Location</label>
-        <input type="email" class="form-control" id="location" placeholder="Where ?">
-      </div>
-
-    <div class="col-md-3">
-      <button type="submit" class="btn btn-default btn-danger">What's Cooking!</button>
-    </div>
-  </form>
-</div> -->
+</div>

@@ -1,5 +1,16 @@
-<div class="details text-center">
-  <h5><b><%= chefs.name %></b></h5>
-  <%= image_tag chefs.profile_image.thumb %>
-  <h5><%=link_to "View Full Details", users_chef_path %></h5>
+<div class="popup">
+  <div class="inner">
+    <div class="menu-img">
+      <%= image_tag chef.products.first.image1.optimised , class: "img-responsive"%>
+    </div>
+    <div class="info-holder">
+      <div class="name-holder">
+        <h4><%= chef.store_name %></h4>
+        <h5>by <%= link_to chef.name, user_path(chef) %></h5>
+      </div>
+      <div class="profile-img-holder">
+        <%= image_tag chef.profile_image.thumb , class: "img-responsive"%>
+      </div>
+    </div>
+  </div>
 </div>
