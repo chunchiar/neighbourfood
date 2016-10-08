@@ -731,6 +731,36 @@ label {
   }
 }
 
+.features-title{
+  @extend .baloo;
+  color: $red;
+}
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  color: $red;
+}
+
+.short-underline{
+  width: 50px;
+  border-bottom: 2px solid $red;
+}
+
+.img-holder{
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.features-container{
+  h4{font-weight: bold;}
+
+  .media-text {
+    text-align: justify;
+  }
+}
+
+
 @media screen and (max-width: 1199px) {
 
 }
