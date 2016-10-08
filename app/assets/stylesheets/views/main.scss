@@ -712,6 +712,25 @@ label {
   display: inline-block;
 }
 
+
+#how {
+  h1 {
+   color: $red;
+   font-size: 50px;
+   @extend .baloo;
+   text-align: center;
+  }
+
+  .howpic{
+    max-width: 1050px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+  .howpic img{
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1199px) {
 
 }
