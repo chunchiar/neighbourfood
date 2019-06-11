@@ -8,3 +8,5 @@
 |__| \__| |_______||__|  \______| |__|  |__| |______/   \______/   \______/  | _| `._____||__|      \______/   \______/  |_______/
 
 ```
+
+This is a demo day web application, it is a home food delivery service platform made with ruby on rails programming language.
