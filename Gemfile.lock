@@ -1,14 +1,14 @@
 GIT
-  remote: git://github.com/mshibuya/remotipart.git
-  revision: 7e244e78e148430b7720e6cf8f86263d6a1dfddf
+  remote: https://github.com/mshibuya/remotipart.git
+  revision: a1860d64aef484047bc1ef50e2f19ef2480eacf9
   specs:
-    remotipart (1.3.0)
+    remotipart (1.4.4)
 
 GIT
-  remote: git://github.com/norman/friendly_id.git
-  revision: aff0564584e84ffa505e6e278b65ca3c4ee5d698
+  remote: https://github.com/norman/friendly_id.git
+  revision: bd3aab45de0d9bf0725e18e24496d26a4051f060
   specs:
-    friendly_id (5.2.0.beta.1)
+    friendly_id (6.0.0)
       activerecord (>= 4.0.0)
 
 GEM
@@ -52,7 +52,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     arel (7.1.2)
     autoprefixer-rails (6.5.0)
       execjs
@@ -270,7 +271,9 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mimemagic (0.4.3)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
@@ -305,6 +308,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    public_suffix (4.0.7)
     puma (3.6.0)
     rack (2.0.1)
     rack-pjax (1.0.0)
