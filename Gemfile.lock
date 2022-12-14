@@ -1,14 +1,14 @@
 GIT
-  remote: git://github.com/mshibuya/remotipart.git
-  revision: 7e244e78e148430b7720e6cf8f86263d6a1dfddf
+  remote: https://github.com/mshibuya/remotipart.git
+  revision: a1860d64aef484047bc1ef50e2f19ef2480eacf9
   specs:
-    remotipart (1.3.0)
+    remotipart (1.4.4)
 
 GIT
-  remote: git://github.com/norman/friendly_id.git
-  revision: aff0564584e84ffa505e6e278b65ca3c4ee5d698
+  remote: https://github.com/norman/friendly_id.git
+  revision: 8fd9d2e87a7bfc572b35b9dd3e411ef957da7a74
   specs:
-    friendly_id (5.2.0.beta.1)
+    friendly_id (5.5.0)
       activerecord (>= 4.0.0)
 
 GEM
@@ -89,6 +89,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    crass (1.0.6)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (4.2.0)
@@ -262,7 +263,8 @@ GEM
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    loofah (2.0.3)
+    loofah (2.19.1)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
@@ -270,7 +272,9 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mimemagic (0.4.3)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
@@ -281,9 +285,8 @@ GEM
     multipart-post (2.0.0)
     nested_form (0.3.2)
     nio4r (1.2.1)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -300,7 +303,6 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.19.0)
-    pkg-config (1.1.7)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -331,8 +333,8 @@ GEM
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.4.4)
+      loofah (~> 2.19, >= 2.19.1)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
